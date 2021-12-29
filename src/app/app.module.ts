@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { LayoutModule } from '../app/modules/layout/layout.module';
 import { ExchangeRateModule }  from './modules/exchange-rate/exchange-rate.module';
+import { CustomerModule } from './modules/customer/customer.module';
 
 
 @NgModule({
