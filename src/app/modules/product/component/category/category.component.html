@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="card-header">
+        <h3>
+            <i class="fa fa-th-large"></i> &nbsp;&nbsp;Categorias
+            <button (click)="createCategory()" style = "float: right" type="button" class="btn btn-success btn-sm">
+                Agregar Categoría
+                <i class="fa fa-plus"></i>
+            </button>
+        </h3>
+    </div>
+    <!-- Body -->
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center">Categoría</th>
+                        <th class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let category of categories">
+                        <td class="text-center">{{ category.category }}</td>
+                        <td>
+                            <button (click)="updateCategory(category)" type="button" class="btn btn-primary btn-sm">
+                                Actualizar
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            &nbsp;&nbsp;
+                            <button (click)="deleteCategory(category.id_category)" type="button" class="btn btn-danger btn-sm">
+                                Eliminar
+                                <i class="fa fa-thrash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+ 
+<div class="modal" tabindex="-1" role="dialog" id="category_modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Categoría</h5>
+          <button (click)="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+                <div class="form-group">
+                  <label for="rate">Ingresa el nombre de la Categoría <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control marginForm" id="category" formControlName="category" placeholder="Categoría...">
+                  
+                    <div *ngIf="submitted && f['category'].errors">
+                        <div *ngIf="f['category'].errors['required']">
+                            
+                            <span class="text-danger">El nombre de la categoría es obligatoria</span>
+                        </div>
+                    </div>
+
+
+                  
+                </div>
+                <br>
+                <p class="text-right">
+                    <span class="text-danger">*</span>Campos obligatorios
+                </p>
+                <br>
+                <button type="submit" class="btn btn-success btn-block">Registar</button>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
