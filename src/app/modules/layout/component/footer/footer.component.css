@@ -1,0 +1,15 @@
+footer{
+    padding: 10px;
+    color: #BBBBBB;
+    font-size: 12px;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+p{
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
