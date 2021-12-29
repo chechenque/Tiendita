@@ -31,7 +31,7 @@ export class RegionService {
   }
 
   updateRegion(region:Region){
-    return this.http.put(this.apiURI+this.resource+this.resource+"/"+region.id_region,region);
+    return this.http.put(this.apiURI+this.resource+"/"+region.id_region,region);
   } 
 
   deleteRegion(id_region:number){

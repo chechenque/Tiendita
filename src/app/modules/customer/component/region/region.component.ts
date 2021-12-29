@@ -60,6 +60,7 @@ export class RegionComponent implements OnInit {
         res => {
           console.log(this.region);
           this.getRegions();
+          this.closeModal();
         },
         err => console.log(err)
       )
@@ -68,11 +69,11 @@ export class RegionComponent implements OnInit {
         res => {
           console.log(this.region);
           this.getRegions();
+          this.closeModal();
         },
         err => console.log(err)
       )
     }
-    this.submitted = false;
   }
 
   createRegion(){
@@ -92,6 +93,7 @@ export class RegionComponent implements OnInit {
     this.region_service.deleteRegion(id_region).subscribe(
       res => {
         console.log(this.region)
+        this.getRegions();
       },
       err => console.log(err)
     )
@@ -103,5 +105,7 @@ export class RegionComponent implements OnInit {
 
   closeModal(){
     $("#region_modal").modal("hide");
+    this.submitted = false;
   }
+  
 }
