@@ -1,0 +1,53 @@
+<div class="container-fluid">
+
+
+        <div class="card-header">
+            <h1><i class="fas fa-money-bill-alt"></i> &nbsp;Exchange Rate</h1>
+        
+        <div class="card-body">
+            <h4>Base: {{exchange_rate.base}}</h4>
+        </div>
+
+          <form [formGroup]="formulario" (ngSubmit)="ngSubmit()">
+
+            <div class="form-group">
+              <label for="rate">Ingresa tasa de cambio</label>
+              <input type="text" class="form-control marginForm" id="rate" formControlName="rate" placeholder="Tasa de cambio...">
+            </div>
+
+            <button type="submit" class="btn btn-primary marginForm">Consultar</button>
+          </form>
+
+          <div class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center">Rate</th>
+                    <th class="text-center">Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let rate of exchange_rate.rates | keyvalue">
+                    <td class="text-center">{{rate.key}}</td>
+                    <td class="text-center">{{rate.value}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+
+          </div>
+
+        </div>
+
+
+        <div class="card-footer text-muted">
+            <p>Provider: {{exchange_rate.provider}}</p>
+            <p>Warning: {{exchange_rate.WARNING_UPGRADE_TO_V6}}</p>
+            <p>Terms: {{exchange_rate.terms}}</p>
+            <p>Date: {{exchange_rate.date}}</p>
+            <p>Time Last Update: {{exchange_rate.time_last_updated}}</p>
+        </div>
+
+
+</div>
