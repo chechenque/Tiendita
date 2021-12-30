@@ -1,0 +1,145 @@
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="card-header">
+        <h3>
+            <i class="fa fa-th-large"></i> &nbsp;&nbsp;Clientes
+            <button (click)="createCustomer()" style = "float: right" type="button" class="btn btn-success btn-sm">
+                Agregar Cliente
+                <i class="fa fa-plus"></i>
+            </button>
+        </h3>
+    </div>
+    <!-- Body -->
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">RFC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let customer of customers">
+                        <td class="text-center">{{ customer.name }} {{ customer.surname }}</td>
+                        <td class="text-center">{{ customer.rfc }} </td>
+                        <td>
+                            <button (click)="customerDetail(customer.rfc)" type="button" class="btn btn-secundary btn-sm">
+                                Ver Detalle
+                                <i class="fa fa-id-card"></i>
+                            </button>
+                            &nbsp;&nbsp;
+                            <button (click)="deleteCustomer(customer.id_customer)" type="button" class="btn btn-danger btn-sm">
+                                Región
+                                <i class="fa fa-thrash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+ 
+<div class="modal" tabindex="-1" role="dialog" id="customer_modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Cliente</h5>
+          <button (click)="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+                <div class="form-group">
+                  <label for="rate">Ingresa Ingresa el nombre del cliente <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control marginForm" id="name" formControlName="name" placeholder="Nombre...">
+                  
+                    <div *ngIf="submitted && f['name'].errors">
+                        <div *ngIf="f['name'].errors['required']">
+                            
+                            <span class="text-danger">El nombre del Cliente es obligatorio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="rate">Ingresa Ingresa el apellido del cliente <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control marginForm" id="surname" formControlName="surname" placeholder="Apellido...">
+                    
+                      <div *ngIf="submitted && f['surname'].errors">
+                          <div *ngIf="f['surname'].errors['required']">
+                              
+                              <span class="text-danger">El apellido del Cliente es obligatorio</span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="rate">Ingresa Ingresa el RFC del cliente <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control marginForm" id="rfc" formControlName="rfc" placeholder="RFC...">
+                    
+                      <div *ngIf="submitted && f['rfc'].errors">
+                          <div *ngIf="f['rfc'].errors['required']">
+                              
+                              <span class="text-danger">El RFC del Cliente es obligatorio</span>
+                          </div>
+                      </div>
+                  </div> 
+
+
+                  <div class="form-group">
+                    <label for="rate">Ingresa el email del cliente <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control marginForm" id="mail" formControlName="mail" placeholder="Email...">
+                    
+                      <div *ngIf="submitted && f['mail'].errors">
+                          <div *ngIf="f['mail'].errors['required']">
+                              
+                              <span class="text-danger">El Email del Cliente es obligatorio</span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="rate">Ingresa la direccion del cliente <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control marginForm" id="address" formControlName="address" placeholder="Direccion...">
+                    
+                      <div *ngIf="submitted && f['address'].errors">
+                          <div *ngIf="f['address'].errors['required']">
+                              
+                              <span class="text-danger">La direccion del Cliente es obligatorio</span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="rate">Selecciona la Región del Cliente <span class="text-danger">*</span></label>
+                    <select class="form-control" formControlName="id_region" id="id_region">
+                        <option value="0" disabled>Selecciona una Región </option>
+                        <option *ngFor="let region of regions" [ngValue]="region.id_region">{{ region.region }}</option>
+                    </select>
+                    <div *ngIf="submitted && f['id_regopn'].errors">
+                        <div *ngIf="f['id_regopn'].errors['required']">
+                            
+                            <span class="text-danger">La Region del Cliente es obligatorio</span>
+                        </div>
+                    </div>
+                  </div>
+
+                <br>
+                <p class="text-right">
+                    <span class="text-danger">*</span>Campos obligatorios
+                </p>
+                <br>
+                <button type="submit" class="btn btn-success btn-block">Registar</button>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
