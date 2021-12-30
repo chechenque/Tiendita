@@ -3,11 +3,9 @@ import { Region } from '../_model/region';
 import { HttpClient } from '@angular/common/http';
 import { ApisURI } from "../../../shared/apis-uri";
 
-
 @Injectable({
   providedIn: 'root'
 })
-
 
 export class RegionService {
 
